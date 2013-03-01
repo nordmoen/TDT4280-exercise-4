@@ -14,18 +14,26 @@ public abstract class AbstractSolver extends Agent {
 
 	public AbstractSolver(MathOperator type) {
 		this.solverTypes.add(type);
-		this.registerSolver();
+		this.setupAgent();
 	}
 
 	public AbstractSolver(ArrayList<MathOperator> types){
 		this.solverTypes.addAll(types);
-		this.registerSolver();
+		this.setupAgent();
 	}
 
 	public AbstractSolver(MathOperator[] types){
 		for(MathOperator op : types){
 			solverTypes.add(op);
 		}
+		this.setupAgent();
+	}
+	
+	/**
+	 * Anything which needs to be setup in a constructor can be added in this
+	 * method to ensure that all constructors does the same thing.
+	 */
+	private void setupAgent(){
 		this.registerSolver();
 	}
 	
