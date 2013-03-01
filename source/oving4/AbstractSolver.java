@@ -1,6 +1,9 @@
 package oving4;
 
 import jade.core.Agent;
+import jade.domain.DFService;
+import jade.domain.FIPAException;
+import jade.domain.FIPAAgentManagement.DFAgentDescription;
 
 import java.util.ArrayList;
 
@@ -11,15 +14,28 @@ public abstract class AbstractSolver extends Agent {
 
 	public AbstractSolver(MathOperator type) {
 		this.solverTypes.add(type);
+		this.registerSolver();
 	}
 
 	public AbstractSolver(ArrayList<MathOperator> types){
 		this.solverTypes.addAll(types);
+		this.registerSolver();
 	}
 
 	public AbstractSolver(MathOperator[] types){
 		for(MathOperator op : types){
 			solverTypes.add(op);
+		}
+		this.registerSolver();
+	}
+	
+	protected void registerSolver(){
+		DFAgentDescription desc = new DFAgentDescription();
+		try {
+			DFService.register(this, desc);
+		} catch (FIPAException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
