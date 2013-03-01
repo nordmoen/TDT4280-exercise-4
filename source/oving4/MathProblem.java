@@ -38,5 +38,9 @@ public abstract class MathProblem <T, T2> {
 	public boolean isLeaf(){
 		return !((this.argument1 instanceof MathProblem<?, ?>) || (this.argument2 instanceof MathProblem<?, ?>));
 	}
+	
+	public String toString(){
+		return "(" + this.op + " (" + this.argument1 + " " + this.argument2 +"))";
+	}
 
 }
