@@ -11,7 +11,7 @@ package oving4;
  * @param <T2> The type of the second argument of this problem, should either be
  * {@link Number} or {@link MathProblem}
  */
-public abstract class MathProblem <T, T2> {
+public class MathProblem <T, T2>{
 	
 	protected final MathOperator op;
 	protected final T argument1;
