@@ -36,14 +36,17 @@ public class TaskAdmin extends Agent {
 			public void action() {
 				ACLMessage msg = receive();
 				if(msg != null){
-					if(msg.getPerformative() == ACLMessage.QUERY_REF){
+					switch (msg.getPerformative()) {
+					case ACLMessage.QUERY_REF:
 						MathProblem<?, ?> problem = MathHelper.parseProblem(msg.getContent());
 						Problem prob = new Problem(problem, msg.createReply());
 						problems.add(prob);
 						solveProblem();
-					}else{
+						break;
+					default:
 						System.out.println("Got unrecoqnized performative: " + 
 								msg.getPerformative() + ", " + msg.getContent());
+						break;
 					}
 				}
 			}
@@ -126,7 +129,7 @@ public class TaskAdmin extends Agent {
 			long minTime = Long.MAX_VALUE;
 			AID min = null;
 			for(int i = 0; i < agents.length; i++){
-				ACLMessage reply = this.receive();
+				ACLMessage reply = this.blockingReceive();
 				if(reply != null){
 					if(reply.getPerformative() == ACLMessage.PROPOSE){
 						long time = Long.parseLong(reply.getContent());
@@ -147,7 +150,7 @@ public class TaskAdmin extends Agent {
 				ACLMessage accept = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
 				accept.addReceiver(min);
 				this.send(accept);
-				ACLMessage answer = this.receive();
+				ACLMessage answer = this.blockingReceive();
 				if(answer != null){
 					if(answer.getPerformative() == ACLMessage.INFORM && answer.getSender().equals(min)){
 						return Double.parseDouble(answer.getContent());
