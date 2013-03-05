@@ -6,6 +6,7 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class TaskAdmin extends Agent {
 		}
 		if(prob != null){
 			Number ans = this.solve(prob.prob);
+			System.out.println("Problem: " + prob + ", solved: " + ans);
 			prob.reply.setContent(ans + "");
 			this.send(prob.reply);
 		}
@@ -105,7 +107,9 @@ public class TaskAdmin extends Agent {
 
 	private Number auction(MathProblem<Number, Number> problem){
 		DFAgentDescription desc = new DFAgentDescription();
-		desc.addLanguages(problem.getOp().toString());
+		ServiceDescription s = new ServiceDescription();
+		s.setType(problem.getOp().toString());
+		desc.addServices(s);
 		DFAgentDescription[] agents = null;
 		try {
 			agents = DFService.search(this, desc);
@@ -122,11 +126,13 @@ public class TaskAdmin extends Agent {
 			AID min = null;
 			for(int i = 0; i < agents.length; i++){
 				ACLMessage reply = this.receive();
-				if(reply.getPerformative() == ACLMessage.PROPOSE){
-					long time = Long.parseLong(reply.getContent());
-					if(time < minTime){
-						minTime = time;
-						min = reply.getSender();
+				if(reply != null){
+					if(reply.getPerformative() == ACLMessage.PROPOSE){
+						long time = Long.parseLong(reply.getContent());
+						if(time < minTime){
+							minTime = time;
+							min = reply.getSender();
+						}
 					}
 				}
 			}

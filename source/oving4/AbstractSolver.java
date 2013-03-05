@@ -6,6 +6,7 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 
 import java.util.ArrayList;
@@ -31,26 +32,24 @@ public abstract class AbstractSolver extends Agent {
 
 	public AbstractSolver(MathOperator type) {
 		this.solverTypes.add(type);
-		this.setupAgent();
 	}
 
 	public AbstractSolver(ArrayList<MathOperator> types){
 		this.solverTypes.addAll(types);
-		this.setupAgent();
 	}
 
 	public AbstractSolver(MathOperator[] types){
 		for(MathOperator op : types){
 			solverTypes.add(op);
 		}
-		this.setupAgent();
 	}
 	
 	/**
 	 * Anything which needs to be setup in a constructor can be added in this
 	 * method to ensure that all constructors does the same thing.
 	 */
-	private void setupAgent(){
+	protected void setup(){
+		super.setup();
 		this.registerSolver();
 		this.addBehaviour(new CyclicBehaviour() {
 			
@@ -118,10 +117,12 @@ public abstract class AbstractSolver extends Agent {
 	
 	protected void registerSolver(){
 		DFAgentDescription desc = new DFAgentDescription();
+		desc.setName(this.getAID());
 		for(MathOperator op : solverTypes){
-			desc.addLanguages(op.toString()); 
-			//I'm a bit unsure if language is
-			//the correct variable
+			ServiceDescription d = new ServiceDescription();
+			d.setName(this.getLocalName());
+			d.setType(op.toString());
+			desc.addServices(d);
 		}
 		try {
 			DFService.register(this, desc);
