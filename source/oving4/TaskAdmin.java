@@ -1,7 +1,11 @@
 package oving4;
 
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.domain.DFService;
+import jade.domain.FIPAException;
+import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.lang.acl.ACLMessage;
 
 import java.util.ArrayList;
@@ -9,17 +13,17 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class TaskAdmin extends Agent {
-	
+
 	private class Problem{
 		public final MathProblem<?, ?> prob;
 		public final ACLMessage reply;
-		
+
 		public Problem(MathProblem<?, ?> p, ACLMessage m){
 			this.prob = p;
 			this.reply = m;
 		}
 	}
-	
+
 	private final List<Problem> problems = new ArrayList<Problem>();
 	@Override
 	protected void setup() {
@@ -38,13 +42,13 @@ public class TaskAdmin extends Agent {
 						solveProblem();
 					}else{
 						System.out.println("Got unrecoqnized performative: " + 
-					msg.getPerformative() + ", " + msg.getContent());
+								msg.getPerformative() + ", " + msg.getContent());
 					}
 				}
 			}
 		});
 	}
-	
+
 	/**
 	 * Solve the last problem added to the queue of problems
 	 */
@@ -66,12 +70,16 @@ public class TaskAdmin extends Agent {
 			this.send(prob.reply);
 		}
 	}
-	
+
 	private Number solve(MathProblem<?, ?> p){
 		if(p.isLeaf()){
 			MathProblem<Number, Number> p1 = new MathProblem<Number, Number>(p.getOp(),
 					(Number) p.getArgument1(), (Number) p.getArgument2());
-			return auction(p1);
+			Number result = null;
+			do{
+				result = this.auction(p1);
+			}while(result == null);
+			return result;
 		}else{
 			Number one;
 			Number two;
@@ -87,14 +95,59 @@ public class TaskAdmin extends Agent {
 			}
 			MathProblem<Number, Number> p1 = new MathProblem<Number, Number>(p.getOp(),
 					one, two);
-			return this.auction(p1);
+			Number result = null;
+			do{
+				result = this.auction(p1);
+			}while(result == null);
+			return result;
 		}
 	}
-	
+
 	private Number auction(MathProblem<Number, Number> problem){
+		DFAgentDescription desc = new DFAgentDescription();
+		desc.addLanguages(problem.getOp().toString());
+		DFAgentDescription[] agents = null;
+		try {
+			agents = DFService.search(this, desc);
+		} catch (FIPAException e) {
+			e.printStackTrace();
+		}
+		if(agents != null){
+			ACLMessage msg = new ACLMessage(ACLMessage.CFP);
+			for(DFAgentDescription d : agents){
+				msg.addReceiver(d.getName());
+			}
+			msg.setContent(problem.toString());
+			double minTime = Double.MAX_VALUE;
+			AID min = null;
+			for(int i = 0; i < agents.length; i++){
+				ACLMessage reply = this.receive();
+				if(reply.getPerformative() == ACLMessage.PROPOSE){
+					double time = Double.parseDouble(reply.getContent());
+					if(time < minTime){
+						minTime = time;
+						min = reply.getSender();
+					}
+				}
+			}
+			ACLMessage reject = new ACLMessage(ACLMessage.REJECT_PROPOSAL);
+			for(DFAgentDescription d : agents){
+				if(!d.getName().equals(min))
+					reject.addReceiver(d.getName());
+			}
+			this.send(reject);
+			if(min != null){
+				ACLMessage accept = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
+				this.send(accept);
+				ACLMessage answer = this.receive();
+				if(answer.getPerformative() == ACLMessage.INFORM && answer.getSender().equals(min)){
+					return Double.parseDouble(answer.getContent());
+				}
+			}
+		}
 		return null;
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println(MathHelper.parseProblem("+ * 55 20 + 10 2").isLeaf());
 		System.out.println(MathHelper.parseProblem("+ 20 30").isLeaf());
