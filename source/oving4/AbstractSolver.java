@@ -1,9 +1,11 @@
 package oving4;
 
 import jade.core.Agent;
+import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.lang.acl.ACLMessage;
 
 import java.util.ArrayList;
 
@@ -35,6 +37,28 @@ public abstract class AbstractSolver extends Agent {
 	 */
 	private void setupAgent(){
 		this.registerSolver();
+		this.addBehaviour(new CyclicBehaviour() {
+			
+			@Override
+			public void action() {
+				ACLMessage msg = receive();
+				if(msg != null){
+					switch (msg.getPerformative()) {
+					case ACLMessage.CFP:
+						handleCFP(msg);
+						break;
+
+					default:
+						break;
+					}
+				}
+			}
+		});
+	}
+	
+	private void handleCFP(ACLMessage msg){
+		MathProblem<Number, Number> prob = MathHelper.parseProblem(msg.getContent());
+		double time = this.estimateTime(prob);
 	}
 	
 	protected void registerSolver(){
@@ -72,5 +96,7 @@ public abstract class AbstractSolver extends Agent {
 	}
 
 	abstract protected Number subSolve(MathProblem<Number, Number> problem);
+	
+	abstract protected double estimateTime(MathProblem<Number, Number> problem);
 
 }

@@ -4,10 +4,13 @@ import java.util.Arrays;
 
 
 public class MathHelper {
-	public static MathProblem<?, ?> parseProblem(String op){
+	@SuppressWarnings("unchecked")
+	public static <T, T2> MathProblem<T, T2> parseProblem(String op){
 		String cleaned = op.replaceAll("[\\[\\]\\(\\)]", "");
 		String[] splited = cleaned.split(" ");
-		return (MathProblem<?, ?>) subParse(splited).prob;
+		return (MathProblem<T, T2>) subParse(splited).prob;
+		//This is extremely ugly and dangerous, but I can't be asked to do it
+		//better since none else is going to use this.
 	}
 
 	public static MathOperator parseOperator(String op){
