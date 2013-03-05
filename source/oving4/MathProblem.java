@@ -35,11 +35,11 @@ public class MathProblem <T, T2>{
 		return argument2;
 	}
 	
-	public boolean argument1IsLeaf(){
+	public boolean argument1IsNumber(){
 		return !(this.argument1 instanceof MathProblem<?, ?>);
 	}
 	
-	public boolean argument2IsLeaf(){
+	public boolean argument2IsNumber(){
 		return !(this.argument2 instanceof MathProblem<?, ?>);
 	}
 	
@@ -48,7 +48,7 @@ public class MathProblem <T, T2>{
 	 * @return - A boolean
 	 */
 	public boolean isLeaf(){
-		return this.argument1IsLeaf() && this.argument2IsLeaf();
+		return this.argument1IsNumber() && this.argument2IsNumber();
 	}
 	
 	public String toString(){

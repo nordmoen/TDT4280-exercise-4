@@ -39,6 +39,11 @@ public abstract class AbstractSolver extends Agent {
 	
 	protected void registerSolver(){
 		DFAgentDescription desc = new DFAgentDescription();
+		for(MathOperator op : solverTypes){
+			desc.addLanguages(op.toString()); 
+			//I'm a bit unsure if language is
+			//the correct variable
+		}
 		try {
 			DFService.register(this, desc);
 		} catch (FIPAException e) {
