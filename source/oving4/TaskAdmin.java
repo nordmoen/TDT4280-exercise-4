@@ -118,12 +118,12 @@ public class TaskAdmin extends Agent {
 				msg.addReceiver(d.getName());
 			}
 			msg.setContent(problem.toString());
-			double minTime = Double.MAX_VALUE;
+			long minTime = Long.MAX_VALUE;
 			AID min = null;
 			for(int i = 0; i < agents.length; i++){
 				ACLMessage reply = this.receive();
 				if(reply.getPerformative() == ACLMessage.PROPOSE){
-					double time = Double.parseDouble(reply.getContent());
+					long time = Long.parseLong(reply.getContent());
 					if(time < minTime){
 						minTime = time;
 						min = reply.getSender();
