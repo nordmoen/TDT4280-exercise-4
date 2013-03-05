@@ -152,6 +152,8 @@ public abstract class AbstractSolver extends Agent {
 
 	abstract protected Number subSolve(MathProblem<Number, Number> problem);
 	
-	abstract protected long estimateTime(MathProblem<Number, Number> problem);
+	protected long estimateTime(MathProblem<Number, Number> problem){
+        return (long) (props.size()*10*Math.random());
+    }
 
 }
