@@ -70,7 +70,7 @@ public class TaskAdmin extends Agent {
 		}
 		if(prob != null){
 			Number ans = this.solve(prob.prob);
-			System.out.println("Problem: " + prob + ", solved: " + ans);
+			System.out.println("Problem: " + prob.prob + ", solved: " + ans);
 			prob.reply.setContent(ans + "");
 			this.send(prob.reply);
 		}
