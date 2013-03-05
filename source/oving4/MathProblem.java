@@ -35,8 +35,20 @@ public class MathProblem <T, T2>{
 		return argument2;
 	}
 	
+	public boolean argument1IsLeaf(){
+		return !(this.argument1 instanceof MathProblem<?, ?>);
+	}
+	
+	public boolean argument2IsLeaf(){
+		return !(this.argument2 instanceof MathProblem<?, ?>);
+	}
+	
+	/**
+	 * Return true if both of the arguments are not a MathProblem
+	 * @return - A boolean
+	 */
 	public boolean isLeaf(){
-		return !(this.argument1 instanceof MathProblem<?, ?>) || !(this.argument2 instanceof MathProblem<?, ?>);
+		return this.argument1IsLeaf() && this.argument2IsLeaf();
 	}
 	
 	public String toString(){
