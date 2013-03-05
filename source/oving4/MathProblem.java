@@ -52,7 +52,7 @@ public class MathProblem <T, T2>{
 	}
 	
 	public String toString(){
-		return "(" + this.op + " (" + this.argument1 + " " + this.argument2 +"))";
+		return "(" + MathHelper.operatorToChar(this.op) + " (" + this.argument1 + " " + this.argument2 +"))";
 	}
 
 }

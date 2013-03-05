@@ -34,7 +34,21 @@ public class MathHelper {
 					"' into a proper MathOperator");
 		}
 	}
-	
+
+	public static char operatorToChar(MathOperator op){
+		switch (op) {
+		case PLUS:
+			return '+';
+		case MINUS:
+			return '-';
+		case MULTIPLY:
+			return '*';
+		case DIVIDE:
+			return '/';
+		}
+		return 'N';
+	}
+
 	private static ParseTuple subParse(String[] parseString){
 		MathOperator op = null;
 		ParseTuple result = new ParseTuple();
@@ -48,10 +62,10 @@ public class MathHelper {
 			result.prob = Double.parseDouble(parseString[0]);
 			result.rest = Arrays.copyOfRange(parseString, 1, parseString.length);
 		}
-		
+
 		return result;
 	}
-	
+
 	public static class ParseTuple{
 		public Object prob;
 		public String[] rest;

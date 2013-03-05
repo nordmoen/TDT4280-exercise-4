@@ -122,6 +122,7 @@ public class TaskAdmin extends Agent {
 				msg.addReceiver(d.getName());
 			}
 			msg.setContent(problem.toString());
+			this.send(msg);
 			long minTime = Long.MAX_VALUE;
 			AID min = null;
 			for(int i = 0; i < agents.length; i++){
@@ -144,10 +145,13 @@ public class TaskAdmin extends Agent {
 			this.send(reject);
 			if(min != null){
 				ACLMessage accept = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
+				accept.addReceiver(min);
 				this.send(accept);
 				ACLMessage answer = this.receive();
-				if(answer.getPerformative() == ACLMessage.INFORM && answer.getSender().equals(min)){
-					return Double.parseDouble(answer.getContent());
+				if(answer != null){
+					if(answer.getPerformative() == ACLMessage.INFORM && answer.getSender().equals(min)){
+						return Double.parseDouble(answer.getContent());
+					}
 				}
 			}
 		}

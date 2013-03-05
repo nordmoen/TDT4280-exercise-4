@@ -68,6 +68,7 @@ public abstract class AbstractSolver extends Agent {
 						handleAccept(msg);
 						break;
 					default:
+						System.err.println("Got strange message: " + msg);
 						break;
 					}
 				}
@@ -77,6 +78,7 @@ public abstract class AbstractSolver extends Agent {
 	}
 	
 	private void handleAccept(ACLMessage msg){
+		System.out.println("Got accept message");
 		Proposal p = findFirstProposal(msg.getSender());
 		this.props.remove(p);
 		try {
@@ -84,12 +86,14 @@ public abstract class AbstractSolver extends Agent {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
+		ACLMessage reply = msg.createReply();
+		reply.setPerformative(ACLMessage.INFORM);
 		reply.setContent(this.solve(p.message) + "");
 		this.send(reply);
 	}
 	
 	private void handleRejection(ACLMessage msg) {
+		System.out.println("Got reject message");
 		Proposal p = findFirstProposal(msg.getSender());
 		if(p != null){
 			props.remove(p);
@@ -106,11 +110,13 @@ public abstract class AbstractSolver extends Agent {
 	}
 	
 	private void handleCFP(ACLMessage msg){
+		System.out.println("Got CFP message");
 		MathProblem<Number, Number> prob = MathHelper.parseProblem(msg.getContent());
 		long time = this.estimateTime(prob);
 		Proposal p = new Proposal(msg.getSender(), prob, time);
 		this.props.add(p);
-		ACLMessage reply = new ACLMessage(ACLMessage.PROPOSE);
+		ACLMessage reply = msg.createReply();
+		reply.setPerformative(ACLMessage.PROPOSE);
 		reply.setContent(time + "");
 		this.send(reply);
 	}
