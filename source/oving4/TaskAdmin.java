@@ -157,6 +157,9 @@ public class TaskAdmin extends Agent {
 					}
 				}
 			}
+		}else{
+			System.err.println("Could not find any agents which could solve: " + 
+		problem + ", make sure there are some agents of the needed type!");
 		}
 		return null;
 	}

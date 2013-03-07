@@ -1,0 +1,15 @@
+\section{Task Decomposition}\label{sec:task-decomposition}
+To solve the task decomposition we created a single class which is responsible
+for containing the simple calculation as well as the more complicated nested
+calculations. In \textit{MathProblem.java} you can see the structure of this
+problem. The main thing to note is that we use Java generics, in a very bad way,
+to solve the problem of different structures. This class contains some helper
+code to help the task administrator to solve problems, but is generally just a
+tree structure.
+
+To create the above mentioned MathProblem instances we have also created a lot
+of static helper code in the file \textit{MathHelper.java}. The main method is
+the \textit{subparse} method which is a recursive decent parser parsing strings
+into MathProblems. This parser expects prefix encoded problems which is quite a
+bit easier to parse then regular infix, but it could just as easily parse
+postfix with a bit of tweaking.

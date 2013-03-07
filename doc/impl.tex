@@ -23,3 +23,7 @@ messages and then acts on them using different methods. Because of this
 asynchronism the class stores each bid in a list and retrieves them when getting
 a follow up message before it acts on that stored bid, either solving it or
 discarding the bid altogether.
+
+To estimate time we currently just combine random with the size of current bids
+in order to simulate time taken for different unknown tasks while including the
+amount of bids.
