@@ -3,3 +3,12 @@
 # Package Files #
 *.war
 *.ear
+
+#Latex:
+*.aux
+*.log
+*.out
+*.pdf
+
+#Vim:
+*.swp

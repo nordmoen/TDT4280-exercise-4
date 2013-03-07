@@ -1,0 +1,12 @@
+\appendix
+\section{Jade Parameters}\label{appendix:jade-parameters}
+In listing \ref{code:jade-parameters} we have listed the program parameters
+needed to run our code in conjunction with the Jade framework. This will
+initiate 2 of each agent so an auction makes sense.
+\begin{lstlisting}[language=bash, frame=single, caption=Parameters to run our agents on
+Linux utilizing Jade, label=code:jade-parameters, breaklines=true]
+-gui -local-host 127.0.0.1 -agents
+"admin:oving4.TaskAdmin;pluss1:oving4.PlussSolver;pluss2:oving4.PlussSolver;
+mult1:oving4.MultiplySolver;mult2:oving4.MultiplySolver;min1:oving4.MinusSolver;
+min2:oving4.MinusSolver;div1:oving4.DivideSolver;div2:oving4.DivideSolver"
+\end{lstlisting}

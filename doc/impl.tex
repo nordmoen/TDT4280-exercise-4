@@ -1,0 +1,25 @@
+\section{Implementation}\label{sec:implementation}
+The implementation we have written is centered around two central classes. The
+first class is the Task administrator, located in \textit{TaskAdmin.java}, which
+is quite straight forward and just contains code for facilitating auctions and
+receiving tasks. All of which is quite according to the assignment given and
+does not deviate much. The code uses static blocking receives and not any of the
+built-in behaviors. The main methods are \textit{solve} and \textit{auction}
+which together solves each problem given. The solve method just recursively
+solves the main problems by decomposing it down in to the leaf calculations and
+then joining those results and then solving those calculation. Each calculation
+is auctioned to corresponding solvers using the auction method. The
+auction method is sequential in nature, but the Task administrator as a whole
+could be made to solve problems parallel quite easily by making it an thread and
+changing the list of problems to a concurrent data structure.
+
+The second central class is the \textit{AbstractSolver.java} which is the base
+class of all solvers. This class does all the base work and only leaves the
+calculation and time estimation to subclasses. Because this class does not need
+any recursive behavior the general behavior is inherently asynchronous. This is
+done by having all messages and all interactions end by returning an answer. The
+receiving of messages is done through a cyclic behaviour which waits for
+messages and then acts on them using different methods. Because of this
+asynchronism the class stores each bid in a list and retrieves them when getting
+a follow up message before it acts on that stored bid, either solving it or
+discarding the bid altogether.
