@@ -1,0 +1,31 @@
+\section{An Optimal Strategy}\label{sec:optimal-strategy}
+Our auction strategy is not optimal because of the general algorithm chosen, but
+it could be extended to become something quite good. There of course would need
+to be added some considerations to the algorithm to move it in the direction of
+optimality. One of those is that the task administrator should consider the size
+of each task before auctioning it. Estimating the time to solve and delegating
+subproblems to other administrators would surely help it cope with larger, more
+complex problems. There are many different suggestions for an optimal strategy
+online and thus the one presented here will not be the absolute best, but it
+should be a lot closer than what is currently implemented.
+
+As mentioned above, a better performance will be gained when taking more complex
+behaviors into consideration. To move in the direction of optimality the task
+administrator should consider the size of the problem, if the problem instance
+is small using a lot of time auctioning the problem will not gain that much. On
+the other hand even if the problem instance is large a lot of auctions will
+degrade performance because of the overhead of messages if the subproblems are
+easy or quick to calculate. Load balancing is also an important consideration
+which also present the need for more task administrators which should auction to
+different solver agents. This also means that the top administrator need to
+consider load balancing between its sub administrators. If we know noting more
+about the underlying problem than its timing estimate the administrator will be
+wholly dependant on the estimates reported and need to "test the water" so to
+say in order to generate plans which it will use next time it encounters a
+similar problem. To "test the waters" it needs to record the estimated time, the
+solved time, the number of auctions and the time taken to auction, using this
+data it could generate plans for what it should do next. 
+
+This is all just expected to perform better, but is not necessarily going to
+perform better because of the complexity. An optimal strategy then needs to take
+all these concerns into consideration.

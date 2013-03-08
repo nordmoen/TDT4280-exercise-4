@@ -1,0 +1,22 @@
+\section{Final Thoughts}\label{sec:final-thoughts}
+In this project we have implemented an auction system which will distribute
+simple math problems to several solvers which will solve simple problems which
+together can build to larger problems.
+
+The auction type implemented was quite simple, but could be extended to solve
+more complex challenges if time would allow it. The interesting part of the
+challenge was this auction which will distribute tasks out to other agents which
+then can solve those problems. This means that the implemented code could quite
+easily scale to larger problems with ease which in and of it self is quite the
+task. This code could then be used to distribute problems to several agents on
+different computers scaling to challenges much larger than the small problems
+solved here.
+
+In this assignment the problem was to decompose the problem while
+also distributing subtasks to different agents. This was achieved, but the
+decompose stage ended up becoming the bottleneck as it was done recursively,
+meaning the distribution of tasks could not be done asynchronously.
+
+All in all the problem was quite challenging and very fun, we learned a lot
+about auctions in distributed agents and we had some challenges debugging
+problems regarding this distribution.
