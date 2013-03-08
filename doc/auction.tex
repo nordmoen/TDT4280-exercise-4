@@ -1,4 +1,39 @@
 \section{Auction Type}\label{sec:auction}
-For simplicities sake we chose to go with the recommended auction type, because
-of the ease of implementation. Since there was no real demand on the auction
-type this was easy enough to implement and gave us more time to debug.
+
+Our chiose of auction type is the recommended First-price Sealed-Did (FPSB).
+Mostly because it's eeasy to implement. The ease of implementation gave us more
+time for debugging, and eased the rest of the rest of the work on the exercise. 
+
+FPSB's strenghts are ease of implementation and potential speed. The auction uses little
+time to aquire bids. And we don't waste time calculating best scores or changing
+parameters. 
+
+FPSB aquires bids by asking all agents for bids. The auction waits for replies.
+And then the bids are compared. Then reject and accept messages are sent to all
+the agents, where only one gets an accept message. The agent with the favored
+bid is then sent the task to execute. 
+
+A possible problem is the time the auction has
+to wait for replies. The auction uses \textit{recieve-blocking}, which waits
+for a reply before continuing. If the agent doesn't reply quickly, or something
+goes wrong in the process, the waiting time might be long. Althought the possibility of this is
+slim in the test environment.
+
+Other possible auction techniques are: 
+A range of iterative auctions, All-pay auctions and Reserve auction. 
+
+In an all-pay auction everyone must pay their bid, even if they don't win the
+auction. This form for bidding makes the bidder committ to the auction, and
+possibly stay longer because of the already paid stakes. 
+
+The English auction as an alternative to our choise would slow down the
+program. As the English auction tries to find a price which only one bidder is
+willing to pay. This might result in many bidding rounds.
+
+Reserve auctions aim to aquire the lowest price from a seller. The buyers ask
+for the lowest price from multiple sellers, and buys from the seller with the
+lowest price. Here the sellers have a reserved price which is their lower
+limit. This limit might not be known to the buyer or the other sellers. The
+seller can also choose to not sell if the asked price is lower than the
+reserve limit. 
+
