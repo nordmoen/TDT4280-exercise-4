@@ -1,0 +1,190 @@
+(QUERY-REF
+ :sender  ( agent-identifier :name rma@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE ) )
+ :content  "+ 10 * 2 / 10 - 3 1" 
+)
+(REQUEST
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((action ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) (search (df-agent-description :services (set (service-description :type MINUS))) (search-constraints :max-results -1))))" 
+ :reply-with  rw-admin@127.0.0.1:1099/JADE1362735556568-8  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556568-8 )
+(INFORM
+ :sender  ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((result (action (agent-identifier :name df@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) (search (df-agent-description :services (set (service-description :type MINUS))) (search-constraints :max-results -1))) (sequence (df-agent-description :name (agent-identifier :name min2@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name min2 :type MINUS))) (df-agent-description :name (agent-identifier :name min1@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name min1 :type MINUS))))))" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556583  :in-reply-to  rw-admin@127.0.0.1:1099/JADE1362735556568-8  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556568-8 )
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name min2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name min1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(- (3.0 1.0))" 
+)
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name min2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name min1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(- (3.0 1.0))" 
+)
+(PROPOSE
+ :sender  ( agent-identifier :name min2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556610 )
+(PROPOSE
+ :sender  ( agent-identifier :name min1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556614 )
+(REJECT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name min1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(ACCEPT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name min2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(INFORM
+ :sender  ( agent-identifier :name min2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "2.0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556662 )
+(REQUEST
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((action ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) (search (df-agent-description :services (set (service-description :type DIVIDE))) (search-constraints :max-results -1))))" 
+ :reply-with  rw-admin@127.0.0.1:1099/JADE1362735556667-9  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556667-9 )
+(INFORM
+ :sender  ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((result (action (agent-identifier :name df@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) (search (df-agent-description :services (set (service-description :type DIVIDE))) (search-constraints :max-results -1))) (sequence (df-agent-description :name (agent-identifier :name div2@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name div2 :type DIVIDE))) (df-agent-description :name (agent-identifier :name div1@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name div1 :type DIVIDE))))))" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556671  :in-reply-to  rw-admin@127.0.0.1:1099/JADE1362735556667-9  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556667-9 )
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name div2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name div1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(/ (10.0 2.0))" 
+)
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name div2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name div1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(/ (10.0 2.0))" 
+)
+(PROPOSE
+ :sender  ( agent-identifier :name div2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556689 )
+(PROPOSE
+ :sender  ( agent-identifier :name div1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556694 )
+(REJECT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name div1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(ACCEPT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name div2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(INFORM
+ :sender  ( agent-identifier :name div2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "5.0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556728 )
+(REQUEST
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((action ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) (search (df-agent-description :services (set (service-description :type MULTIPLY))) (search-constraints :max-results -1))))" 
+ :reply-with  rw-admin@127.0.0.1:1099/JADE1362735556731-10  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556731-10 )
+(INFORM
+ :sender  ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((result (action (agent-identifier :name df@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) (search (df-agent-description :services (set (service-description :type MULTIPLY))) (search-constraints :max-results -1))) (sequence (df-agent-description :name (agent-identifier :name mult1@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name mult1 :type MULTIPLY))) (df-agent-description :name (agent-identifier :name mult2@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name mult2 :type MULTIPLY))))))" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556733  :in-reply-to  rw-admin@127.0.0.1:1099/JADE1362735556731-10  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556731-10 )
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name mult1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name mult2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(* (2.0 5.0))" 
+)
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name mult1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name mult2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(* (2.0 5.0))" 
+)
+(PROPOSE
+ :sender  ( agent-identifier :name mult1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556741 )
+(PROPOSE
+ :sender  ( agent-identifier :name mult2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556742 )
+(REJECT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name mult2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(ACCEPT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name mult1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(INFORM
+ :sender  ( agent-identifier :name mult1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "10.0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556747 )
+(REQUEST
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((action ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) (search (df-agent-description :services (set (service-description :type PLUS))) (search-constraints :max-results -1))))" 
+ :reply-with  rw-admin@127.0.0.1:1099/JADE1362735556748-11  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556748-11 )
+(INFORM
+ :sender  ( agent-identifier :name df@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "((result (action (agent-identifier :name df@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) (search (df-agent-description :services (set (service-description :type PLUS))) (search-constraints :max-results -1))) (sequence (df-agent-description :name (agent-identifier :name pluss1@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name pluss1 :type PLUS))) (df-agent-description :name (agent-identifier :name pluss2@127.0.0.1:1099/JADE :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc)) :services (set (service-description :name pluss2 :type PLUS))))))" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556751  :in-reply-to  rw-admin@127.0.0.1:1099/JADE1362735556748-11  :language  fipa-sl0  :ontology  FIPA-Agent-Management  :protocol  fipa-request
+ :conversation-id  conv-admin@127.0.0.1:1099/JADE1362735556748-11 )
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name pluss1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name pluss2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(+ (10.0 10.0))" 
+)
+(CFP
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name pluss1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) ( agent-identifier :name pluss2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "(+ (10.0 10.0))" 
+)
+(PROPOSE
+ :sender  ( agent-identifier :name pluss2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556758 )
+(PROPOSE
+ :sender  ( agent-identifier :name pluss1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556759 )
+(REJECT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name pluss1@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(ACCEPT-PROPOSAL
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name pluss2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+)
+(INFORM
+ :sender  ( agent-identifier :name pluss2@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "20.0" 
+ :reply-with  admin@127.0.0.1:1099/JADE1362735556773 )
+(QUERY-REF
+ :sender  ( agent-identifier :name admin@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc ))
+ :receiver  (set ( agent-identifier :name rma@127.0.0.1:1099/JADE  :addresses (sequence http://jorgno-ThinkPad-T430:7778/acc )) )
+ :content  "20.0" 
+ :reply-with  rma@127.0.0.1:1099/JADE1362735556568 )

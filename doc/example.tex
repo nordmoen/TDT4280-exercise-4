@@ -1,1 +1,36 @@
 \section{Decompose Example}\label{sec:decompose-example}
+As an example we can show some of the operations which go into solving something
+like the equation in listing \ref{code:example-operation}.
+
+\begin{lstlisting}[frame=single, breaklines=true, caption=Example equation,
+label=code:example-operation]
++ 10 * 2 / 10 - 3 1
+\end{lstlisting}
+
+The first thing that happens when the TaskAdmin receives the equation is that it
+is parsed into a more appropriate representation, which is accomplished through
+the MathProblem class. This is then appended to a list of problems to be solved
+and the TaskAdmin is then asked to solve the first problem in that list. We are
+now soon starting to solve the problem with communication. The next thing that
+happens is that the problem is divided up into its smaller parts, recursively,
+once this methods has found a leaf calculation it will start to solve this using
+auction.
+
+Once a leaf calculation is reached that calculation is set to be solved. The
+TaskAdmin checks which operation which is needed to solve it, e.g. minus, plus,
+etc. It then contacts the directory service agent and asks it for all the agents
+which has registered it self as solver for the operation it is looking for. The
+directory agent will return a list of agents and the TaskAdmin will then start
+the auction(this is described in section \ref{sec:auction}). When a solver is
+chosen the TaskAdmin will contact all the ones that lost and send them a
+"Reject-proposal" message telling them that they did not win the auction. The
+TaskAdmin will then contact the winner and send it a "Accept-proposal" and then
+wait for the result.
+
+The leaf calculation is then done and the result is sent back up to the
+recursive function which then either combine that result into a more complex
+equation or it will return this as the result replying back to the agent which
+asked it in the first place.
+
+We have attached a text file together with this report which displays the actual
+messages sent to solve the equation in \ref{code:example-operation}.
